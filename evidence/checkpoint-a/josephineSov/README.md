@@ -12,6 +12,7 @@
 | `01_terminal_python.png` | `python --version`, `git --version` et `python src/main.py` lancés depuis la racine du dépôt |
 | `02_git_status_log.png` | `git status` (working tree propre) et `git log --oneline` montrant mes commits |
 | `03_branch_merge.png` | `git branch`, `git branch --merged` et `git log --oneline --graph --decorate --all` après le merge, avant suppression de la branche feature |
+| `historique.txt` | historique Git de la branche `josephineSauve` (graphe, correspondance avec les TD, détail de chaque commit) |
 
 ## Travail réalisé
 
