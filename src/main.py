@@ -30,6 +30,11 @@ def display_market_metadata(asset):
     print(f"Currency: {asset['currency']}")
 
 
+def display_market_metadata(asset):
+    print(f"Market: {asset['market']}")
+    print(f"Currency: {asset['currency']}")
+
+
 def main():
     instruments = load_instruments()
     prices = load_prices()
