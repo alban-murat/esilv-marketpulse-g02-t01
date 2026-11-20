@@ -25,6 +25,10 @@ def load_prices():
 def filter_prices(prices, ticker):
     return [row for row in prices if row["ticker"] == ticker]
 
+def display_market_metadata(asset):
+    print(f"Market: {asset['market']}")
+    print(f"Currency: {asset['currency']}")
+
 
 def display_market_metadata(asset):
     print(f"Market: {asset['market']}")
@@ -46,24 +50,24 @@ def main():
 
     print("=== MarketPulse ===")
     print()
-    print("Instrument")
+    print("Tracked Instrument")
     print(f"{instrument['ticker']} - {instrument['name']}")
     display_market_metadata(instrument)
-    print(f"Last price: {instrument_latest['close']} {instrument['currency']}")
+    print(f"Latest close price: {instrument_latest['close']} {instrument['currency']}")
     print()
-    print("Benchmark")
+    print("Reference Benchmark")
     print(f"{benchmark['ticker']} - {benchmark['name']}")
     display_market_metadata(benchmark)
-    print(f"Last level: {benchmark_latest['close']}")
+    print(f"Latest close level: {benchmark_latest['close']}")
     print()
-    print(f"Period: {LOOKBACK_LABEL}")
-    print(f"Interval: {INTERVAL_LABEL}")
+    print("Sample Configuration")
+    print(f"Lookback period: {LOOKBACK_LABEL}")
+    print(f"Sampling interval: {INTERVAL_LABEL}")
     print("Provider: CSV")
     print()
-    print("Observations")
-    print(f"{instrument['ticker']}: {len(instrument_prices)}")
-    print(f"{benchmark['ticker']}: {len(benchmark_prices)}")
-
+    print("Observation Count")
+    print(f"{instrument['ticker']}: {len(instrument_prices)} observations")
+    print(f"{benchmark['ticker']}: {len(benchmark_prices)} observations")
 
 if __name__ == "__main__":
     main()
