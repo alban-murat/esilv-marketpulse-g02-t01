@@ -51,6 +51,7 @@ def main():
     print()
     print(f"Period: {LOOKBACK_LABEL}")
     print(f"Interval: {INTERVAL_LABEL}")
+    print("Provider: CSV")
     print()
     print("Observations")
     print(f"{instrument['ticker']}: {len(instrument_prices)}")
