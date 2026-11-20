@@ -2,7 +2,7 @@
 
 
 def index_by_date(prices):
-    raise NotImplementedError  # Owner: Student 2
+    return {row["date"]: row for row in prices}
 
 
 def align_series(instrument_prices, benchmark_prices):
