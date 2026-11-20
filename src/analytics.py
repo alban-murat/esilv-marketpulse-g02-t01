@@ -10,7 +10,16 @@ def align_series(instrument_prices, benchmark_prices):
 
 
 def calculate_period_return(prices):
-    raise NotImplementedError  # Owner: Student 3
+    if not prices:
+        raise ValueError("Price series cannot be empty")
+
+    first_close = float(prices[0]["close"])
+    last_close = float(prices[-1]["close"])
+
+    if first_close == 0:
+        raise ValueError("First close cannot be zero")
+
+    return ((last_close / first_close) - 1.0) * 100.0
 
 
 def calculate_base_100(prices):
