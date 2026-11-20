@@ -43,20 +43,22 @@ def main():
     print()
     print("Tracked Instrument")
     print(f"{instrument['ticker']} - {instrument['name']}")
+    display_market_metadata(instrument)
     print(f"Latest close price: {instrument_latest['close']} {instrument['currency']}")
     print()
     print("Reference Benchmark")
     print(f"{benchmark['ticker']} - {benchmark['name']}")
+    display_market_metadata(benchmark)
     print(f"Latest close level: {benchmark_latest['close']}")
     print()
     print("Sample Configuration")
     print(f"Lookback period: {LOOKBACK_LABEL}")
     print(f"Sampling interval: {INTERVAL_LABEL}")
+    print("Provider: CSV")
     print()
     print("Observation Count")
     print(f"{instrument['ticker']}: {len(instrument_prices)} observations")
     print(f"{benchmark['ticker']}: {len(benchmark_prices)} observations")
-
 
 if __name__ == "__main__":
     main()
