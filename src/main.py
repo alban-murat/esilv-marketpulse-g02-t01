@@ -25,6 +25,10 @@ def load_prices():
 def filter_prices(prices, ticker):
     return [row for row in prices if row["ticker"] == ticker]
 
+def display_market_metadata(asset):
+    print(f"Market: {asset['market']}")
+    print(f"Currency: {asset['currency']}")
+
 
 def main():
     instruments = load_instruments()
