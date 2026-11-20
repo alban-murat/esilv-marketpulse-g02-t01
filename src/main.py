@@ -26,6 +26,11 @@ def filter_prices(prices, ticker):
     return [row for row in prices if row["ticker"] == ticker]
 
 
+def display_market_metadata(asset):
+    print(f"Market: {asset['market']}")
+    print(f"Currency: {asset['currency']}")
+
+
 def main():
     instruments = load_instruments()
     prices = load_prices()
@@ -43,10 +48,12 @@ def main():
     print()
     print("Instrument")
     print(f"{instrument['ticker']} - {instrument['name']}")
+    display_market_metadata(instrument)
     print(f"Last price: {instrument_latest['close']} {instrument['currency']}")
     print()
     print("Benchmark")
     print(f"{benchmark['ticker']} - {benchmark['name']}")
+    display_market_metadata(benchmark)
     print(f"Last level: {benchmark_latest['close']}")
     print()
     print(f"Period: {LOOKBACK_LABEL}")
