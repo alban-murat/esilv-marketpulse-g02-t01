@@ -1,22 +1,18 @@
 # Checkpoint B — Alban Murat (`alban-murat`)
 
-## Pull Request & Code Review
-- **Pull Request:** [#8 — feat: add core quantitative analytics module](https://github.com/alban-murat/esilv-marketpulse-g02-t01/pull/8)
-- **Branches:** `feature/analytics` -> `main`
-- **Merge Commit:** `230e9eb`
+## 1. Individual Pull Request & Code Review (TD05–TD06)
+- **Pull Request:** [#4 — feat: display data provider label in summary](https://github.com/alban-murat/esilv-marketpulse-g02-t01/pull/4)
+- **Branches:** `feature/display-provider-label` -> `main`
 - **Reviewer:** `@josephineSov` (approved)
+- **Reviewed Pull Request:** [#7 — docs: add TD05 quick start instructions](https://github.com/alban-murat/esilv-marketpulse-g02-t01/pull/7) — approved by `@alban-murat`
 
-## Contributions
-- Implemented `align_series` in `src/analytics.py` to align instrument and benchmark time series on common trading dates.
-- Wired the analytics pipeline (`align_series`, `calculate_period_return`, `calculate_base_100`, `calculate_relative_performance`) into `src/main.py` with fallback import support.
-
-## Validation (`python src/main.py` on `main`)
-- **Aligned sessions:** `21`
-- **AAPL period return:** `+6.48%`
-- **SP500 period return:** `+2.15%`
-- **Relative performance:** `+4.33 percentage points`
-- **Base 100:** `AAPL` `100.00 -> 106.48` | `SP500` `100.00 -> 102.15`
+## 2. Live Yahoo Finance Integration (TD08)
+- **Pull Request:** [#9 — feat: add Yahoo Finance market data provider](https://github.com/alban-murat/esilv-marketpulse-g02-t01/pull/9)
+- **Branches:** `feature/yahoo-provider` -> `main` (merge commit `0fdffa8`)
+- **Contribution (Student 1 / Integrator):** Wired the `PROVIDER = "yahoo"` / `"csv"` switch into `src/main.py` (`e4bdec5`) and verified live retrieval (`AAPL` vs `SP500`, `1mo` / `1d`) reusing `src/analytics.py` unchanged.
 
 ## Attached Screenshots
-- `01_pull_request.png` — Pull Request #8 status, review approval, and merge into `main`.
-- `02_execution_output.png` — Terminal execution of `python src/main.py` on `main`.
+- `01_pull_request.png` — Pull Request #4 status and approval from `@josephineSov`.
+- `02_code_review.png` — Code review approval submitted on Pull Request #7.
+- `03_yahoo_market_data.png` — Live Yahoo Finance market data retrieval in `python src/main.py`.
+- `04_instrument_benchmark.png` — Aligned comparison (`AAPL` vs `SP500`, `1 month`, `Daily`) with period returns and Base 100.
