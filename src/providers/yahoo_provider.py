@@ -6,6 +6,8 @@ CANONICAL_TO_YAHOO = {
     "SP500": "^GSPC",
 }
 
+YAHOO_SYMBOL_MAPPING = CANONICAL_TO_YAHOO
+
 
 def fetch_yahoo_prices(canonical_ticker, lookback="1mo", interval="1d"):
     yahoo_symbol = CANONICAL_TO_YAHOO[canonical_ticker]
@@ -37,3 +39,13 @@ def fetch_yahoo_prices(canonical_ticker, lookback="1mo", interval="1d"):
     prices.sort(key=lambda row: row["date"])
 
     return prices
+
+
+def fetch_prices_for_ticker(ticker, period="1mo", interval="1d"):
+    if ticker not in YAHOO_SYMBOL_MAPPING:
+        supported = ", ".join(sorted(YAHOO_SYMBOL_MAPPING))
+        raise ValueError(
+            f"Unknown MarketPulse ticker '{ticker}'. Supported tickers: {supported}."
+        )
+
+    return fetch_yahoo_prices(ticker, lookback=period, interval=interval)
