@@ -37,3 +37,9 @@ def fetch_yahoo_prices(canonical_ticker, lookback="1mo", interval="1d"):
     prices.sort(key=lambda row: row["date"])
 
     return prices
+
+def fetch_prices_for_ticker(ticker, period="1mo", interval="1d"):
+    if ticker not in CANONICAL_TO_YAHOO:
+        raise ValueError(f"Unknown ticker: {ticker}")
+
+    return fetch_yahoo_prices(ticker, lookback=period, interval=interval)
