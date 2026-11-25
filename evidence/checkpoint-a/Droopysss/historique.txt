@@ -1,0 +1,45 @@
+TD01-TD04 - Git history
+Student: Alexis Jacques
+GitHub: Droopysss
+Team: G02 - T01
+Branch: alexis_jacques
+
+Main commits (oldest to newest):
+
+5207db8 first td session
+    Initial team repository version.
+
+e59c7d3 refactor: reuse market summary display
+    TD02: improved the Python program to display information from CSV and JSON data.
+
+a6a4775 docs: add team information
+    TD01: completed TEAM.md with the team information.
+
+4ae974d feat: display first and last observation dates
+    TD04: added functions to show the first and last dates for the instrument and benchmark.
+
+1cb2e24 docs: add checkpoint A evidence
+    Checkpoint A: added the evidence README and three terminal screenshots.
+
+TD04 work:
+- Created the feature/display-observation-dates branch.
+- Added the first and last observation dates to src/main.py.
+- Ran python src/main.py to check the output.
+- Committed the feature as 4ae974d.
+- Merged the feature branch into the local main branch (fast-forward).
+- Saved screenshots of the execution, Git history and branch merge.
+
+Optional exercises:
+- Created a separate practice branch named feature/practice-comparison.
+- Committed practice.txt as 262fba3 (docs: add branch comparison test).
+- Compared the practice branch with main and inspected the Git history.
+- This practice branch was not merged into main.
+
+Checkpoint A files:
+- evidence/checkpoint-a/Droopysss/01_terminal_python.png
+- evidence/checkpoint-a/Droopysss/02_git_status_log.png
+- evidence/checkpoint-a/Droopysss/03_branch_merge.png
+- evidence/checkpoint-a/Droopysss/README.md
+
+Note: TD03 focused on practicing local Git commands and did not require a separate commit for every command.
+The TD01-TD04 history is preserved in the alexis_jacques branch.
