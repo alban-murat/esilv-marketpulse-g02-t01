@@ -9,6 +9,7 @@ try:
         calculate_base_100,
         calculate_relative_performance,
     )
+    from src.providers.yahoo_provider import fetch_yahoo_prices
 except ModuleNotFoundError:
     from analytics import (
         align_series,
@@ -16,6 +17,7 @@ except ModuleNotFoundError:
         calculate_base_100,
         calculate_relative_performance,
     )
+    from providers.yahoo_provider import fetch_yahoo_prices
 
 
 DATA_DIR = Path("data/sample")
@@ -23,6 +25,9 @@ DATA_DIR = Path("data/sample")
 # These starter values mirror config/settings.yml.
 # settings.yml is a human-readable configuration contract in the CORE.
 # Parsing YAML is optional and is not required by the 18-hour lab sequence.
+PROVIDER = "yahoo"  # "yahoo" or "csv"
+LOOKBACK = "1mo"
+INTERVAL = "1d"
 LOOKBACK_LABEL = "1 month"
 INTERVAL_LABEL = "Daily"
 
@@ -40,10 +45,6 @@ def load_prices():
 def filter_prices(prices, ticker):
     return [row for row in prices if row["ticker"] == ticker]
 
-def display_market_metadata(asset):
-    print(f"Market: {asset['market']}")
-    print(f"Currency: {asset['currency']}")
-
 
 def display_market_metadata(asset):
     print(f"Market: {asset['market']}")
@@ -52,13 +53,25 @@ def display_market_metadata(asset):
 
 def main():
     instruments = load_instruments()
-    prices = load_prices()
 
     instrument = instruments["instrument"]
     benchmark = instruments["benchmark"]
 
-    instrument_prices = filter_prices(prices, instrument["ticker"])
-    benchmark_prices = filter_prices(prices, benchmark["ticker"])
+    if PROVIDER == "yahoo":
+        instrument_prices = fetch_yahoo_prices(
+            instrument["ticker"], lookback=LOOKBACK, interval=INTERVAL
+        )
+        benchmark_prices = fetch_yahoo_prices(
+            benchmark["ticker"], lookback=LOOKBACK, interval=INTERVAL
+        )
+        provider_label = "Yahoo Finance"
+    elif PROVIDER == "csv":
+        prices = load_prices()
+        instrument_prices = filter_prices(prices, instrument["ticker"])
+        benchmark_prices = filter_prices(prices, benchmark["ticker"])
+        provider_label = "CSV"
+    else:
+        raise ValueError(f"Unsupported provider: {PROVIDER}")
 
     instrument_latest = instrument_prices[-1]
     benchmark_latest = benchmark_prices[-1]
@@ -68,17 +81,17 @@ def main():
     print("Tracked Instrument")
     print(f"{instrument['ticker']} - {instrument['name']}")
     display_market_metadata(instrument)
-    print(f"Latest close price: {instrument_latest['close']} {instrument['currency']}")
+    print(f"Latest close price: {instrument_latest['close']:.2f} {instrument['currency']}")
     print()
     print("Reference Benchmark")
     print(f"{benchmark['ticker']} - {benchmark['name']}")
     display_market_metadata(benchmark)
-    print(f"Latest close level: {benchmark_latest['close']}")
+    print(f"Latest close level: {benchmark_latest['close']:.2f}")
     print()
     print("Sample Configuration")
     print(f"Lookback period: {LOOKBACK_LABEL}")
     print(f"Sampling interval: {INTERVAL_LABEL}")
-    print("Provider: CSV")
+    print(f"Provider: {provider_label}")
     print()
     print("Observation Count")
     print(f"{instrument['ticker']}: {len(instrument_prices)} observations")
@@ -111,6 +124,7 @@ def main():
     print(
         f"{benchmark['ticker']}  : {benchmark_base_100[0]['value']:.2f} -> {benchmark_base_100[-1]['value']:.2f}"
     )
+
 
 if __name__ == "__main__":
     main()
